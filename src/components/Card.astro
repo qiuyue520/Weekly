@@ -26,10 +26,11 @@ const issueTitle = post.frontmatter?.issueTitle;
 const link = post.frontmatter?.numericUrl ?? toNumericUrl(post.url);
 const title = parseTitle(link, legacySlug, issueTitle, lang);
 const { image, description, date } = post.frontmatter;
+const BASE = '/Weekly';
 ---
 
 <a
-  href={link}
+  href={`${BASE}${link}`}
   data-astro-prefetch
   data-image={image}
   class='pb-3 md:mt-5 mt-4 md:mr-4 flex flex-col justify-center rounded-lg shadow-md overflow-hidden mx-auto md:w-80 sm:w-96 w-full card-content preload-link'
