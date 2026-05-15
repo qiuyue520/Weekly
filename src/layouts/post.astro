@@ -77,7 +77,7 @@ const zhPath = `/Weekly${cleanPath}`;
 const enPath = `/Weekly/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
 const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
 
-const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;
+const giscusTheme = GISCUS_CONFIG.theme;
 ---
 
 <BaseLayout title={`${SITE.title}${title}`} content={content} pageURL={currentUrl}>
