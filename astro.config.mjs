@@ -88,6 +88,7 @@ function defaultLayoutPlugin() {
 
 export default defineConfig({
   site: SITE.homePage,
+  base: "/Weekly/",
   prefetch: true,
   trailingSlash: "never",
   server: {
