@@ -1,8 +1,7 @@
 import { ui, defaultLang } from "./ui";
 
 export function getLangFromUrl(url: URL) {
-  const [, lang] = url.pathname.split("/");
-  if (lang in ui) return lang as keyof typeof ui;
+  if (url.pathname.includes('/en')) return 'en';
   return defaultLang;
 }
 
@@ -20,6 +19,10 @@ export function useLocalizedPath(lang: keyof typeof ui) {
 
     if (l !== defaultLang && normalizedPath === "/") {
       return `${BASE}/${l}`;
+    }
+
+    if (l !== defaultLang && normalizedPath.startsWith(prefix)) {
+      return `${BASE}${normalizedPath}`.replace(/\/$/, "") || "/";
     }
 
     return `${BASE}${prefix}${normalizedPath}`.replace(/\/$/, "") || "/";
