@@ -7,7 +7,6 @@ import { sortPosts } from '@/util';
 import { useTranslations } from '../../i18n/utils';
 import HeadPreload from '../../components/HeadPreload.astro';
 
-// Fetch only English posts
 const posts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as any[];
 const allPosts = sortPosts(posts);
 const t = useTranslations('en');
@@ -15,7 +14,6 @@ const t = useTranslations('en');
 
 <BaseLayout title={t('site.title')} description={t('site.description')} pageURL={`${SITE.homePage}/en`}>
   <style slot='head'>
-    /* Enhanced card hover effects */
     .card-content:hover {
       transform: translateY(-4px);
       box-shadow:

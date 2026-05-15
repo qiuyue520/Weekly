@@ -38,7 +38,7 @@ function defaultLayoutPlugin() {
     const { frontmatter } = file.data.astro;
     frontmatter.layout = "@layouts/post.astro";
 
-    const isEn = filePath.includes("/en/posts/");
+    const isEn = filePath.includes("/en/posts/") || filePath.includes("\\en\\posts\\");
     const postsDir = isEn ? "/en/posts/" : "/posts/";
 
     const relativePath = filePath

@@ -1,6 +1,8 @@
 // Helper function to extract and decode the title part from the URL
 export const extractTitlePart = (currentPage: string) => {
-  const [, raw = ""] = currentPage.split("/posts/");
+  const isEn = currentPage.includes("/en/posts/");
+  const separator = isEn ? "/en/posts/" : "/posts/";
+  const [, raw = ""] = currentPage.split(separator);
   return decodeURIComponent(raw.replace(/\/$/, ""));
 };
 
@@ -23,7 +25,9 @@ export const sortPosts = (allPosts: any) => {
 
 export const toNumericUrl = (currentPage: string) => {
   const index = getIndex(currentPage);
-  return Number.isNaN(index) ? currentPage : `/posts/${index}`;
+  const isEn = currentPage.includes("/en/posts/");
+  const basePath = isEn ? "/en/posts" : "/posts";
+  return Number.isNaN(index) ? currentPage : `${basePath}/${index}`;
 };
 
 export const parseTitle = (
