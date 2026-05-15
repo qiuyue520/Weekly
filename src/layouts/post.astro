@@ -345,7 +345,6 @@ const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;
       {
         GISCUS_CONFIG.repo === SITE.repo && (
           <script
-            is:inline
             id='giscus-script'
             src='https://giscus.app/client.js'
             data-repo={GISCUS_CONFIG.repo}
