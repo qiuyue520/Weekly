@@ -15,6 +15,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -34,23 +35,22 @@ jobs:
 
       - name: Update README
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           node build.js
           cat README.md
 
       - name: Commit and push if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          # 设置分支名称变量
           BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 
-          git config user.email "xiaonaihenlihai@outlook.com"
-          git config user.name "xiaonai"
+          git config user.email "qiuyue520@qq.com"
+          git config user.name "qiuyue520"
 
-          # 添加所有变更
           git add -A
 
-          # 检查是否有变更
           if git diff-index --quiet HEAD --; then
             echo "No changes detected"
           else
