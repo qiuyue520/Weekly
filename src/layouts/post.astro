@@ -48,8 +48,6 @@ const displayTitle = lang === 'en' ? displayName.replace(/-/g, ' ') : displayNam
 const numberPrefix = lang === 'en' ? `${numberPart}.` : `第 ${numberPart} 期`;
 const titleSeparator = lang === 'en' ? ' ' : ' - ';
 
-// Check if current path is the legacy slug path (with hyphen and title)
-// If so, mark it to be ignored by Pagefind to avoid duplicate search results
 const isLegacyPath = normalizedCurrent !== normalizedNumeric && normalizedCurrent?.includes('-');
 
 const content = {
@@ -61,7 +59,6 @@ const content = {
 };
 const currentUrl = `${SITE.homePage}${effectivePath}`;
 
-// The next article
 const posts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
 const allPosts = sortPosts(posts);
 const postIndex = getIndex(effectivePath);
@@ -69,7 +66,6 @@ const toNavUrl = (post: any) => (post ? (post.frontmatter?.numericUrl ?? toNumer
 let nextUrl = postIndex > 2 ? toNavUrl(allPosts[allPosts.length - postIndex + 1]) : '';
 let prevUrl = postIndex < allPosts.length ? toNavUrl(allPosts[allPosts.length - postIndex - 1]) : '';
 
-// Use the issue number as the Giscus term to unify comments across languages
 const getGiscusTerm = () => {
   return numberPart;
 };
@@ -81,13 +77,12 @@ const zhPath = cleanPath;
 const enPath = `/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
 const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
 
-const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
+const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;
 ---
 
 <BaseLayout title={`${SITE.title}${title}`} content={content} pageURL={currentUrl}>
   <meta slot='head' data-pagefind-meta={`url:${currentUrl}`} />
   {heroImage && <link rel='preload' as='image' href={heroImage} slot='head' fetchpriority='high' />}
-  <!-- Post-specific styles -->
   <style slot='head'>
     body {
       width: 100%;
@@ -297,7 +292,6 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
     }
   </style>
 
-  <!-- Post layout -->
   <main class='layout' data-pagefind-ignore={isLegacyPath ? '' : undefined}>
     <aside id='grid-left' class='grid-sidebar' title='Site Navigation'>
       <LeftSidebar currentPage={effectivePath} />
@@ -344,7 +338,7 @@ const giscusTheme = `${Astro.url.origin}/styles/giscus-light.css`;
             {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
             {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
             <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'}</a>
-            <a href='/rss.xml' title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
+            <a href='/Weekly/rss.xml' title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>
         </div>
       </div>
