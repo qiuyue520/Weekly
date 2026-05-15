@@ -1,4 +1,4 @@
-name: Build README
+name: Build
 
 on:
   push:
@@ -12,10 +12,6 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.ref }}
-          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -33,49 +29,5 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
 
-      - name: Update README
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          node build.js
-          cat README.md
-
-      - name: Commit and push if changed
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
-
-          git config user.email "qiuyue520@qq.com"
-          git config user.name "qiuyue520"
-
-          git add -A
-
-          if git diff-index --quiet HEAD --; then
-            echo "No changes detected"
-          else
-            git commit -m "Updated content"
-            git push origin "HEAD:$BRANCH_NAME"
-          fi
-
-      - name: Ping IndexNow
-        run: |
-          KEY="6ff2b87724ac930114bf05c74db50bb5"
-          HOST="weekly.xiaonai.top"
-
-          URLS=$(git diff --name-only HEAD~1 HEAD -- 'src/pages/posts/*.md' | while read f; do
-            slug=$(basename "$f" .md)
-            echo "https://$HOST/posts/$slug"
-          done)
-
-          if [ -z "$URLS" ]; then
-            echo "No post URLs changed, submitting homepage"
-            URLS="https://$HOST/"
-          fi
-
-          URL_LIST=$(echo "$URLS" | jq -R -s 'split("\n") | map(select(length > 0))')
-          echo "Submitting to IndexNow: $URL_LIST"
-
-          curl -s -X POST "https://api.indexnow.org/indexnow" \
-            -H "Content-Type: application/json" \
-            -d "{\"host\":\"$HOST\",\"key\":\"$KEY\",\"keyLocation\":\"https://$HOST/$KEY.txt\",\"urlList\":$URL_LIST}"
+      - name: Build
+        run: npm run build
