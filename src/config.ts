@@ -10,15 +10,15 @@ export const SITE = {
 };
 
 export const GISCUS_CONFIG = {
-  repo: "xiaonai/Weekly",
-  repoId: "",
+  repo: "qiuyue520/Weekly",
+  repoId: "R_kgDOSeKEAg",
   category: "General",
-  categoryId: "",
+  categoryId: "DIC_kwDOSeKEAs4C9Ho3",
   mapping: "title",
   strict: "0",
   reactionsEnabled: "1",
   emitMetadata: "0",
   inputPosition: "bottom",
-  theme: "https://gw.alicdn.com/os/k/kr/comment.css",
+  theme: "preferred_color_scheme",
   lang: "zh-CN",
 };
