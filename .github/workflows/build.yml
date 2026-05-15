@@ -44,8 +44,8 @@ jobs:
           # 设置分支名称变量
           BRANCH_NAME="${GITHUB_REF#refs/heads/}"
 
-          git config user.email "tw93@qq.com"
-          git config user.name "Tw93-bot"
+          git config user.email "xiaonaihenlihai@outlook.com"
+          git config user.name "xiaonai"
 
           # 添加所有变更
           git add -A
@@ -61,7 +61,7 @@ jobs:
       - name: Ping IndexNow
         run: |
           KEY="6ff2b87724ac930114bf05c74db50bb5"
-          HOST="weekly.tw93.fun"
+          HOST="weekly.xiaonai.top"
 
           URLS=$(git diff --name-only HEAD~1 HEAD -- 'src/pages/posts/*.md' | while read f; do
             slug=$(basename "$f" .md)
