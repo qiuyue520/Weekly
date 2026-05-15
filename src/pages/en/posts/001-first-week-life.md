@@ -28,7 +28,7 @@ I strongly agree with Huizhi's view: **weekly** and **blog** are indeed two fund
 
  - **Wednesday** Someone came asking me to help set up the environment for a big data competition, asking, "So, am I still having you do that environment setup for me?" I didn't reply. After all, they weren't doing any real work and were just waiting to coast to a prize, with the competition likely relying entirely on my effort while they played the decorative role. I'll write about this in detail on my blog later, so I won't expand on it here.
 
-> 📎 Feel free to follow my blog: [blog.xiaonai.top](<url id="" type="url" status="" title="" wc="">https://blog.xiaonai.top</url>). If access is slow, you can visit the domestic mirror at [www.xiaonai.top](<url id="" type="url" status="" title="" wc="">https://www.xiaonai.top</url>)
+> 📎 Feel free to follow my blog: [blog.xiaonai.top](https://blog.xiaonai.top). If access is slow, you can visit the domestic mirror at [www.xiaonai.top](https://www.xiaonai.top)
 
  - **Thursday** No morning classes, but the studio scheduled a shift, so sleeping in was out of the question. Woke up early, got to my post, turned on the computer, and started a new day. Also had a Linux exam in the evening, cramming at the last minute.
 
