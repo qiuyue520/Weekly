@@ -9,7 +9,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useLocalizedPath(lang);
 
-// Dynamically fetch posts based on language
 const posts =
   lang === 'en'
     ? Object.values(import.meta.glob('../pages/en/posts/*.md', { eager: true }))
@@ -56,7 +55,7 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
                 <li class='nav-link'>
                   <a
                     data-astro-prefetch
-                    href={`/${child.link}`}
+                    href={translatePath(`/${child.link}`)}
                     aria-current={`${decodeURIComponent(currentPageMatch) === child.link ? 'page' : 'false'}`}
                     title={child.title}
                   >

@@ -73,8 +73,8 @@ const getGiscusTerm = () => {
 const giscusTerm = getGiscusTerm();
 
 const cleanPath = effectivePath.startsWith('/en/') ? effectivePath.slice(3) : effectivePath;
-const zhPath = cleanPath;
-const enPath = `/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
+const zhPath = `/Weekly${cleanPath}`;
+const enPath = `/Weekly/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
 const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
 
 const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;

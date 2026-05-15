@@ -13,15 +13,15 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function useLocalizedPath(lang: keyof typeof ui) {
+  const BASE = "/Weekly";
   return function translatePath(path: string, l: string = lang) {
     const prefix = l === defaultLang ? "" : `/${l}`;
     let normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
-    // Ensure root path /en doesn't have trailing slash etc
     if (l !== defaultLang && normalizedPath === "/") {
-      return `/${l}`;
+      return `${BASE}/${l}`;
     }
 
-    return `${prefix}${normalizedPath}`.replace(/\/$/, "") || "/";
+    return `${BASE}${prefix}${normalizedPath}`.replace(/\/$/, "") || "/";
   };
 }
