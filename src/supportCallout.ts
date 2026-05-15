@@ -1,7 +1,7 @@
 export const SUPPORT_CALLOUT = {
-  zh: "觉得不错，请 Tw93 喝冰可乐 🥤",
-  en: "Buy me a coke 🥤",
-  link: "https://cats.tw93.fun?name=潮流周刊",
+  zh: "欢迎通过邮箱联系我",
+  en: "Welcome to contact me via email",
+  link: "mailto:xiaonaihenlihai@outlook.com",
 };
 
 export const renderSupportCalloutForRSS = (lang: "zh" | "en" = "zh") => {

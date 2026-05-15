@@ -53,14 +53,14 @@ export async function GET() {
   };
 
   return rss({
-    title: "Tw93 Weekly",
-    description: "Recording engineer Tw93's non-boring life",
-    site: "https://weekly.tw93.fun/en/",
+    title: SITE.title,
+    description: SITE.description,
+    site: SITE.homePage,
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
       media: "http://search.yahoo.com/mrss/",
     },
-    customData: `<atom:icon>${SITE.icon}</atom:icon><atom:logo>${SITE.icon}</atom:logo><image><url>${SITE.icon}</url><title>Tw93 Weekly</title><link>${SITE.homePage}/en/</link></image><follow_challenge><feedId>41147805276726276</feedId><userId>42909600318350336</userId></follow_challenge>`,
+    customData: `<atom:icon>${SITE.icon}</atom:icon><atom:logo>${SITE.icon}</atom:logo><image><url>${SITE.icon}</url><title>${SITE.title}</title><link>${SITE.homePage}/en/</link></image><follow_challenge><feedId>41147805276726276</feedId><userId>42909600318350336</userId></follow_challenge>`,
     items: await Promise.all(
       posts.map(async (item) => {
         const numericLink =

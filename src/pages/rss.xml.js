@@ -53,9 +53,9 @@ export async function GET() {
   };
 
   return rss({
-    title: "潮流周刊",
-    description: "记录工程师 Tw93 的不枯燥生活",
-    site: "https://weekly.tw93.fun/",
+    title: SITE.title,
+    description: SITE.description,
+    site: SITE.homePage,
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
       media: "http://search.yahoo.com/mrss/",

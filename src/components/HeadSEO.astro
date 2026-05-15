@@ -4,19 +4,17 @@ export interface Props {
   content: any;
   pageURL: URL | string;
 }
-const { icon, keywords, author, twitterId, homePage, title, siteImage, description: siteDescription } = SITE;
+const { icon, keywords, author, homePage, title, siteImage, description: siteDescription } = SITE;
 const { content = {}, pageURL } = Astro.props;
 const { title: contentTitle, socialImage, description: contentDescription, image } = content;
 
 const pageTitle = contentTitle ? `${title}${contentTitle}` : title;
-// Check if this is an article page
 const isArticle = contentTitle && content.date;
 const imageSrc = isArticle ? (socialImage || siteImage) : icon;
 const description = contentDescription || siteDescription;
 const preloadImage = image ? `${image}?x-oss-process=image/resize,w_1200/format,webp` : false;
 const canonicalURL = new URL(pageURL, homePage).href;
 
-// Structured data
 const structuredData = isArticle
   ? {
       '@context': 'https://schema.org',
@@ -27,7 +25,6 @@ const structuredData = isArticle
       author: {
         '@type': 'Person',
         name: author,
-        url: `https://twitter.com/${twitterId}`,
       },
       publisher: {
         '@type': 'Organization',
@@ -57,14 +54,10 @@ const structuredData = isArticle
     };
 ---
 
-<!-- Canonical URL -->
 <link rel='canonical' href={canonicalURL} />
 
 <meta name='twitter:card' content='summary_large_image' />
 <meta name='twitter:image' content={imageSrc} />
-<meta name='twitter:site' content={homePage} />
-<meta property='twitter:url' content={pageURL} />
-<meta name='twitter:creator' content={`@${twitterId}`} />
 <meta property='twitter:description' content={description} />
 <meta name='keywords' content={keywords} />
 <meta name='author' content={author} />
@@ -78,7 +71,6 @@ const structuredData = isArticle
 {isArticle && content.date && <meta property='article:published_time' content={content.date} />}
 {isArticle && <meta property='article:author' content={author} />}
 
-<!-- JSON-LD Structured Data -->
 <script type='application/ld+json' set:html={JSON.stringify(structuredData)} />
 
 {preloadImage && <link rel='preload' href={preloadImage} as='image' />}
