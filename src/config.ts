@@ -7,6 +7,7 @@ export const SITE = {
   siteImage: "/Weekly/xnwky.png",
   homePage: "https://weekly.xiaonai.top",
   blogPage: "https://blog.xiaonai.top",
+  repo: "qiuyue520/Weekly",
 };
 
 export const GISCUS_CONFIG = {
