@@ -1,6 +1,7 @@
 // BASE 路径，从环境变量获取，默认为 /Weekly（GitHub Pages）
-// Cloudflare Pages 部署时设置为空字符串
-export const BASE = import.meta.env.BASE_URL || '/Weekly';
+// Cloudflare Pages/EdgeOne 部署时设置为空字符串
+// 去掉尾部斜杠，避免路径拼接时出现 // 开头的协议相对 URL
+export const BASE = (import.meta.env.BASE_URL || '/Weekly').replace(/\/+$/, '');
 
 // 站点域名，根据部署环境动态设置
 // GitHub Pages: https://qiuyue520.github.io/Weekly

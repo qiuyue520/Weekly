@@ -10,8 +10,9 @@ import rehypeImage from "./rehype-image.js";
 
 // 部署配置：通过环境变量控制
 // GitHub Pages: BASE=/Weekly SITE_URL=https://qiuyue520.github.io/Weekly
-// Cloudflare Pages: BASE=/ SITE_URL=https://weekly.xiaonai.top
-const BASE = process.env.BASE || "/Weekly";
+// Cloudflare Pages/EdgeOne: BASE=/ SITE_URL=https://weekly.xiaonai.top
+// 去掉尾部斜杠，避免路径拼接时出现 //
+const BASE = (process.env.BASE || "/Weekly").replace(/\/+$/, "");
 const SITE_URL = process.env.SITE_URL || "https://qiuyue520.github.io/Weekly";
 
 // Markdown configuration - controls line break behavior
