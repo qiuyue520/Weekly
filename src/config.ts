@@ -5,7 +5,7 @@ export const SITE = {
   keywords: "xiaonai,Weekly,Blog,前端,linux,设计",
   icon: "/Weekly/icon-144.png",
   siteImage: "/Weekly/xnwky.png",
-  homePage: "https://weekly.xiaonai.top",
+  homePage: "https://qiuyue520.github.io/Weekly",
   blogPage: "https://blog.xiaonai.top",
   repo: "qiuyue520/Weekly",
 };
