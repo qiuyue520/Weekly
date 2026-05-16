@@ -3,7 +3,8 @@
     "http://localhost:4000",
     "http://localhost:4321",
     "http://127.0.0.1:4321",
-    "https://weekly.tw93.fun"
+    "https://weekly.tw93.fun",
+    "https://qiuyue520.github.io"
   ],
   "originsRegex": ["http://localhost:[0-9]+", "http://127.0.0.1:[0-9]+"],
   "defaultCommentOrder": "newest"
