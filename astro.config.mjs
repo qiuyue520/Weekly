@@ -6,8 +6,13 @@ import sitemap from "@astrojs/sitemap";
 
 import { defineConfig } from "astro/config";
 import { parse } from "node-html-parser";
-import { SITE } from "./src/config";
 import rehypeImage from "./rehype-image.js";
+
+// 部署配置：通过环境变量控制
+// GitHub Pages: BASE=/Weekly SITE_URL=https://qiuyue520.github.io/Weekly
+// Cloudflare Pages: BASE=/ SITE_URL=https://weekly.xiaonai.top
+const BASE = process.env.BASE || "/Weekly";
+const SITE_URL = process.env.SITE_URL || "https://qiuyue520.github.io/Weekly";
 
 // Markdown configuration - controls line break behavior
 const markdownConfig = {
@@ -71,15 +76,15 @@ function defaultLayoutPlugin() {
       frontmatter.description = tree.children[1].children[1].value;
     }
 
-    frontmatter.description = frontmatter.description || SITE.description;
-    frontmatter.image = frontmatter.image || SITE.siteImage;
+    frontmatter.description = frontmatter.description || "记录工程师 xiaonai 的不枯燥生活，每周一发布，欢迎关注";
+    frontmatter.image = frontmatter.image || `${BASE}/xnwky.png`;
 
     // Fallback to file creation time if no date is specified
     if (!frontmatter.date) {
       frontmatter.date = getFileCreateDate(filePath);
     }
 
-    if (SITE.repo === WEEKLY_REPO_NAME) {
+    if ("qiuyue520/Weekly" === WEEKLY_REPO_NAME) {
       const postNumber = filePath.split(/[\/\\]posts[\/\\]/)[1]?.split("-")[0];
       frontmatter.socialImage = getTwitterImage(postNumber);
     }
@@ -87,8 +92,8 @@ function defaultLayoutPlugin() {
 }
 
 export default defineConfig({
-  site: SITE.homePage,
-  base: "/Weekly",
+  site: SITE_URL,
+  base: BASE,
   prefetch: true,
   trailingSlash: "never",
   server: {

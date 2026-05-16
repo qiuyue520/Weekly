@@ -1,4 +1,5 @@
 import { ui, defaultLang } from "./ui";
+import { BASE } from '@/config';
 
 export function getLangFromUrl(url: URL) {
   if (url.pathname.includes('/en')) return 'en';
@@ -12,7 +13,6 @@ export function useTranslations(lang: keyof typeof ui) {
 }
 
 export function useLocalizedPath(lang: keyof typeof ui) {
-  const BASE = "/Weekly";
   return function translatePath(path: string, l: string = lang) {
     const prefix = l === defaultLang ? "" : `/${l}`;
     let normalizedPath = path.startsWith("/") ? path : `/${path}`;

@@ -1,5 +1,6 @@
 ---
 // Client-side scripts for image optimization and interactions
+import { BASE } from '@/config';
 ---
 
 <!-- Google Analytics -->
@@ -37,10 +38,10 @@
   }, 5000);
 </script>
 
-<script is:inline>
+<script define:vars={{ BASE }}>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/Weekly/sw.js').then(
+      navigator.serviceWorker.register(BASE + '/sw.js').then(
         (registration) => {
           console.log('SW registered: ', registration);
         },

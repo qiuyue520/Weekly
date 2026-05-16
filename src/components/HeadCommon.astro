@@ -1,7 +1,7 @@
 ---
 import '../styles/theme.css';
 import '../styles/index.css';
-import { SITE } from '@/config';
+import { SITE, BASE } from '@/config';
 const { icon } = SITE;
 ---
 
@@ -13,12 +13,12 @@ const { icon } = SITE;
 <link rel='dns-prefetch' href='https://giscus.app' />
 <link rel='preconnect' href='https://giscus.app' crossorigin />
 
-<link rel='icon' href='/Weekly/favicon.ico' />
-<link rel='icon' type='image/png' sizes='32x32' href='/Weekly/icon-32.png' />
+<link rel='icon' href={`${BASE}/favicon.ico`} />
+<link rel='icon' type='image/png' sizes='32x32' href={`${BASE}/icon-32.png`} />
 <link rel='icon' type='image/png' sizes='144x144' href={icon} />
 <link rel='apple-touch-icon' sizes='144x144' href={icon} />
-<link rel='sitemap' href='/Weekly/sitemap.xml' />
+<link rel='sitemap' href={`${BASE}/sitemap.xml`} />
 <!-- Canonical URL is handled in HeadSEO.astro (included via BaseLayout) -->
 
 <!-- Note: This CSS loads font subsets ONLY. The 8.6MB fallback has been removed for performance. -->
-<link rel='stylesheet' href='/Weekly/fonts/jinkai.css' />
+<link rel='stylesheet' href={`${BASE}/fonts/jinkai.css`} />

@@ -5,7 +5,7 @@ import AstroLogo from '../components/Header/AstroLogo.astro';
 import LeftSidebar from '../components/LeftSidebar.astro';
 import Search from '../components/Header/Search.astro';
 import ReaderModeToggle from '../components/ReaderModeToggle.astro';
-import { SITE, GISCUS_CONFIG } from '@/config';
+import { SITE, GISCUS_CONFIG, BASE } from '@/config';
 import { SUPPORT_CALLOUT } from '@/supportCallout';
 import { parseTitle, sortPosts, getIndex, toNumericUrl, extractTitlePart, getSlugParts } from '@/util';
 import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
@@ -73,11 +73,11 @@ const getGiscusTerm = () => {
 const giscusTerm = getGiscusTerm();
 
 const cleanPath = effectivePath.startsWith('/en/') ? effectivePath.slice(3) : effectivePath;
-const zhPath = `/Weekly${cleanPath}`;
-const enPath = `/Weekly/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
+const zhPath = `${BASE}${cleanPath}`;
+const enPath = `${BASE}/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
 const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
 
-const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;
+const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
 ---
 
 <BaseLayout title={`${SITE.title}${title}`} content={content} pageURL={currentUrl}>
@@ -338,7 +338,7 @@ const giscusTheme = `${Astro.url.origin}/Weekly/styles/giscus-light.css`;
             {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
             {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
             <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'}</a>
-            <a href='/Weekly/rss.xml' title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
+            <a href={`${BASE}/rss.xml`} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>
         </div>
       </div>
