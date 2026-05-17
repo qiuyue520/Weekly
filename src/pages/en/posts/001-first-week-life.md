@@ -26,7 +26,7 @@ I strongly agree with Huizhi's view: **weekly** and **blog** are indeed two fund
 
  - **Tuesday** A day packed with classes. Morning PE class at ten, and I keep hitting the volleyball off-course—any quick tips? 🏐
 
- - **Wednesday** Someone came asking me to help set up the environment for a big data competition, asking, "So, am I still having you do that environment setup for me?" I didn't reply. After all, they weren't doing any real work and were just waiting to coast to a prize, with the competition likely relying entirely on my effort while they played the decorative role. I'll write about this in detail on my blog later, so I won't expand on it here.
+ - **Wednesday** Someone came to me asking for help with setting up the environment for the big data competition. She asked, “So… you’re still going to set up the environment for me, right?” I didn’t reply. After all, she did nothing serious and was just waiting to ride my effort to a prize, while I carried the competition and she played nothing but a decorative role. I’ll write about this in detail on my blog later—people like her don’t deserve any mercy, so I won’t get into it here.
 
 > 📎 Feel free to follow my blog: [blog.xiaonai.top](https://blog.xiaonai.top). If access is slow, you can visit the domestic mirror at [www.xiaonai.top](https://www.xiaonai.top)
 
