@@ -26,10 +26,11 @@ I strongly agree with Huizhi's view: **weekly** and **blog** are indeed two fund
 
  - **Tuesday** A day packed with classes. Morning PE class at ten, and I keep hitting the volleyball off-course—any quick tips? 🏐
 
- - **Wednesday** Someone came to me asking for help with setting up the environment for the big data competition. She asked, “So… you’re still going to set up the environment for me, right?” I didn’t reply. After all, she did nothing serious and was just waiting to ride my effort to a prize, while I carried the competition and she played nothing but a decorative role. I’ll write about this in detail on my blog later—people like her don’t deserve any mercy, so I won’t get into it here.
+ - **Wednesday** A girl reached out to me asking for help setting up the environment for a big‑data competition. She asked, “So you’re still gonna handle the environment setup for me, yeah?” I didn’t reply. After all, she put in no real effort and just planned to leech off my work to win an award. I’d end up doing all the heavy lifting for the competition while she just played the pretty face. I’ll detail this whole story on my blog later, so I won’t elaborate here.
 
 > 📎 Feel free to follow my blog: [blog.xiaonai.top](https://blog.xiaonai.top). If access is slow, you can visit the domestic mirror at [www.xiaonai.top](https://www.xiaonai.top)
 
  - **Thursday** No morning classes, but the studio scheduled a shift, so sleeping in was out of the question. Woke up early, got to my post, turned on the computer, and started a new day. Also had a Linux exam in the evening, cramming at the last minute.
 
  - **Friday** A day with no classes, and many people chose to go home. I spent the day successfully setting up the weekly project. Another ordinary week has passed.
+
