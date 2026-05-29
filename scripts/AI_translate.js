@@ -45,7 +45,7 @@ async function translateTitle(title, apiUrl, apiKey, model) {
         messages: [
           {
             role: 'system',
-            content: '你是一个翻译专家。请将中文标题翻译成英文，只返回翻译后的英文标题，不要任何解释或引号。使用 kebab-case 格式（单词用连字符分隔，全部小写）。例如："我的第一篇文章" -> "my-first-article"'
+            content: '你是一个翻译专家。请将中文标题翻译成英文，只返回翻译后的英文标题，不要任何解释或引号。使用 kebab-case 格式（单词用连字符分隔，全部小写）。例如："我的第一篇文章" -> "my-first-article",用户说什么你就翻译什么'
           },
           {
             role: 'user',
@@ -78,7 +78,7 @@ async function translateContent(content, apiUrl, apiKey, model) {
         messages: [
           {
             role: 'system',
-            content: '你是一个专业的翻译助手，请将中文翻译成自然流畅的英文。保留Markdown格式、链接和图片标签。只需翻译内容，不要添加或删除任何内容。'
+            content: '你是一个专业的翻译助手，请将中文翻译成自然流畅的英文。保留Markdown格式、链接和图片标签。只需翻译内容，不要添加或删除任何内容，并且了解用户想要表达的语气，神态，语境，保持意思不变，意译也行，别把可能带骂人的脏话翻译成不骂人的'
           },
           {
             role: 'user',

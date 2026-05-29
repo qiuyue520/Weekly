@@ -1,0 +1,14 @@
+---
+date: 2026/05/25
+---
+<img src="" width="800" />
+
+<small>Cover image description...</small>
+
+> **A weekly log of little nothings**
+
+**Monday:** Started a new course. Bad news — it’s a filler class. What’s baffling is the teacher telling us we’re the last cohort taking it, meaning we still have to slog through this useless course. Attendance is rigidly enforced: late? Points docked. Absent? Points docked. On official leave? Points docked. Like, even if I just skipped, the teacher might not even notice I’m gone — yet filing for proper leave still gets you penalized. A top-tier absurd filler course, no doubt. And they randomly pick people to give presentations, and of course I got chosen. So now I’ve got to make a PowerPoint. All these demands for a nothing class. Done with it.
+**Tuesday:** Since I failed maths earlier and the make-up exam clashes with another make-up on the exact same day, my teacher told me to apply at the Academic Affairs Office. I’d heard the staff there are notoriously difficult, but I didn’t sweat it — figured as long as I was polite and sincere enough, it’d be fine. Fuck. Got flat-out rejected on the spot. I told them I had proof I was away at a competition and that my teacher had sent me here to apply for a resit. The office staff said: “Whoever said it’s possible — you tell that teacher to come sort it. We can’t. Your teacher seems plenty capable.” So yeah, looks like I’ll be retaking the whole damn course.
+**Wednesday:** My memory feels worse and worse. Don’t know if it’s too many things piling up or what. 8 a.m. Java class — I can’t keep up with the logic anymore. Evening MySQL — same story. Just heard about exam schedules too, and I’m still brooding over how to deal with maths without screwing up graduation, plus sports exams… it’s just so much. At this rate I might not even have time over summer break to take the driving test for part three.
+**Thursday:** Didn’t pass the sports exam a while back. Next Tuesday is my last chance to redo it, so I spent the whole afternoon on the field drilling volleyball. Can you believe it — over 30°C out there and I’m practising volleyball for hours. Too bad they took the balls back at five — no more practice then.
+**Friday:** Some good, some bad. In the morning I got word that the maths make-up is definitely a no-go — I’ll have to retake it. The upside is I’m only losing something I didn’t really need, and it won’t affect getting my diploma. But now I’m stressing about failing PE. If I can’t win at basketball, maybe that’s a me problem, but for volleyball — could we consider it a teammate issue? And the PE teacher won’t let those who’ve already passed test together with those who haven’t. Feels like I’m set up to fail again. And it’s PE, of all things. How could volleyball possibly get any harder?
