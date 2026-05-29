@@ -1,5 +1,5 @@
 ---
-import { SITE, BASE } from '@/config';
+import { SITE } from '@/config';
 import HeaderLink from './HeaderLink.astro';
 import Search from './Search.astro';
 import { getLangFromUrl, useTranslations, useLocalizedPath } from '../../i18n/utils';
@@ -12,11 +12,11 @@ const translatePath = useLocalizedPath(lang);
 
 <div class='flex-grow text-right flex items-center justify-end gap-4'>
   <HeaderLink href={blogPage} target='_blank' class='hidden md:inline-flex' title="xiaonai's blog">{t('nav.home')}</HeaderLink>
-  <HeaderLink href={lang === 'en' ? `${BASE}/en/rss.xml` : `${BASE}/rss.xml`} target='_blank' class='hidden md:inline-flex' title='RSS'>RSS</HeaderLink>
+  <HeaderLink href={lang === 'en' ? '/Weekly/en/rss.xml' : '/Weekly/rss.xml'} target='_blank' class='hidden md:inline-flex' title='RSS'>RSS</HeaderLink>
 
   <Search />
   <a
-    href={lang === 'en' ? `${BASE}/` : `${BASE}/en`}
+    href={lang === 'en' ? '/Weekly/' : '/Weekly/en'}
     class='flex items-center justify-center h-9 w-9 rounded-full !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200'
     aria-label={lang === 'en' ? 'Switch to Chinese' : 'Switch to English'}
     style='text-decoration: none;'
