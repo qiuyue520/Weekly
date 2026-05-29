@@ -1,5 +1,6 @@
 ---
 // Client-side scripts for image optimization and interactions
+import { BASE } from '@/config';
 ---
 
 <!-- Google Analytics -->
@@ -37,10 +38,10 @@
   }, 5000);
 </script>
 
-<script is:inline>
+<script define:vars={{ BASE }}>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/Weekly/sw.js').then(
+      navigator.serviceWorker.register(BASE + '/sw.js').then(
         (registration) => {
           console.log('SW registered: ', registration);
         },
@@ -122,7 +123,6 @@
       currentThumb = null;
     });
 
-    // Parse data from image tags
     lightbox.on('uiRegister', function () {
       lightbox.pswp.ui.registerElement({
         name: 'custom-caption',
@@ -143,21 +143,17 @@
       });
     });
 
-    // Handle opening via validation of data attributes
     lightbox.addFilter('domItemData', (itemData, element) => {
       if (!element) {
         return itemData;
       }
 
-      // Exclude specific images (like logo)
       if (element.classList.contains('pswp-ignore') || element.closest('.content-logo') || element.closest('.logo')) {
         return null;
       }
 
-      // Only include images with proper data attributes or valid src
       const src = element.getAttribute('data-pswp-src') || element.src;
 
-      // Skip SVGs and GIFs
       if (src && (src.toLowerCase().includes('.svg') || src.toLowerCase().includes('.gif'))) {
         return null;
       }
