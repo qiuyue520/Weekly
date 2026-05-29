@@ -3,7 +3,7 @@ date: 2026/05/25
 ---
 <img src="" width="800" />
 
-<small>Cover image description...</small>
+<small>Week 3 Weekly Report</small>
 
 > **A weekly log of little nothings**
 
