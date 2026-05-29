@@ -1,0 +1,42 @@
+/* 自定义字体配置 */
+/* 中文：华康POP1体W5-简体 */
+/* 英文：Essay Text W01 Italic */
+
+@font-face {
+  font-family: 'HuakangPOP1';
+  src: url('./华康POP1体W5-简体.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'EssayText';
+  src: url('./Essay Text W01 Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 定义字体变量 */
+:root {
+  --font-chinese: 'HuakangPOP1', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-english: 'EssayText', 'Georgia', 'Times New Roman', serif;
+}
+
+/* 中文内容使用华康POP1体 */
+:lang(zh),
+:lang(zh-CN) {
+  font-family: var(--font-chinese);
+}
+
+/* 英文内容使用 Essay Text */
+:lang(en),
+:lang(en-US) {
+  font-family: var(--font-english);
+}
+
+/* 混合字体回退策略 */
+body {
+  font-family: var(--font-chinese), var(--font-english), system-ui, -apple-system, sans-serif;
+}
