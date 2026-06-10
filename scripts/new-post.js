@@ -46,6 +46,18 @@ date: ${dateStr}
 <small>封面图描述...</small>
 
 > **记录每周发生的一些小事**
+
+**周一**: 
+
+**周二**: 
+
+**周三**: 
+
+**周四**: 
+
+**周五**: 
+
+
 `;
 
   fs.writeFileSync(filePath, content, 'utf8');
