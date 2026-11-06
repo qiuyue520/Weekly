@@ -1,0 +1,5 @@
+# pnpm 12 构建脚本批准清单（esbuild / sharp 的 postinstall 需要批准，
+# 否则 pnpm install 直接报 ERR_PNPM_IGNORED_BUILDS）
+allowBuilds:
+  esbuild: true
+  sharp: true
