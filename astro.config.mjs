@@ -164,9 +164,9 @@ export default defineConfig({
       lastmod: new Date(),
       filter: (page) => {
         const url = new URL(page);
-        // 根路径现在是默认语言重定向页，不进 sitemap
+        // 根路径是真首页，正常收录
         if (url.pathname === `${BASE}/` || url.pathname === BASE) {
-          return false;
+          return true;
         }
         // 各语言的数字文章页正常收录
         if (new RegExp(`\\/(${LANG_ROUTES.join("|")})\\/posts\\/\\d+$`).test(url.pathname)) {
@@ -182,9 +182,10 @@ export default defineConfig({
     defaultLocale: "cn",
     locales: LANG_ROUTES,
     routing: {
-      // 全部语言带前缀：/cn /en /ja /tw，根路径由中间件重定向到 /cn
+      // 全部语言带前缀：/cn /en /ja /tw
+      // 根路径 / 直接渲染中文首页（src/pages/index.astro），不再 302 跳转 /cn
       prefixDefaultLocale: true,
-      redirectToDefaultLocale: true,
+      redirectToDefaultLocale: false,
     },
   },
   // 旧版无前缀 URL 兼容：/posts/5 → /cn/posts/5
