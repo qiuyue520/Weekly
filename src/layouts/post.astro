@@ -9,6 +9,8 @@ import { SITE, GISCUS_CONFIG, BASE } from '@/config';
 import { SUPPORT_CALLOUT } from '@/supportCallout';
 import { parseTitle, sortPosts, getIndex, toNumericUrl, extractTitlePart, getSlugParts } from '@/util';
 import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+import { languages, giscusLang, type Lang } from '../i18n/ui';
+import LangSwitcher from '../components/LangSwitcher.astro';
 
 export interface Props {
   frontmatter: {
@@ -40,13 +42,9 @@ const translatePath = useLocalizedPath(lang);
 const normalizedCurrent = normalize(currentPage) ?? currentPage;
 const normalizedNumeric = normalize(numericUrl);
 const effectivePath = normalizedNumeric ?? normalizedCurrent;
-let title = parseTitle(effectivePath, legacySlug, issueTitle, lang);
+const title = parseTitle(effectivePath, legacySlug, issueTitle, lang, false, date);
 
-const { numberPart, name } = getSlugParts(legacySlug ?? extractTitlePart(effectivePath));
-const displayName = name || issueTitle || '';
-const displayTitle = lang === 'en' ? displayName.replace(/-/g, ' ') : displayName;
-const numberPrefix = lang === 'en' ? `${numberPart}.` : `第 ${numberPart} 期`;
-const titleSeparator = lang === 'en' ? ' ' : ' - ';
+const { numberPart } = getSlugParts(legacySlug ?? extractTitlePart(effectivePath));
 
 const isLegacyPath = normalizedCurrent !== normalizedNumeric && normalizedCurrent?.includes('-');
 
@@ -59,7 +57,22 @@ const content = {
 };
 const currentUrl = `${SITE.homePage}${effectivePath}`;
 
-const posts = Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+// 当前语言的文章列表（用于上一篇/下一篇导航）
+let posts: any[] = [];
+switch (lang) {
+  case 'en':
+    posts = Object.values(import.meta.glob('../pages/en/posts/*.md', { eager: true }));
+    break;
+  case 'ja':
+    posts = Object.values(import.meta.glob('../pages/ja/posts/*.md', { eager: true }));
+    break;
+  case 'tw':
+    posts = Object.values(import.meta.glob('../pages/tw/posts/*.md', { eager: true }));
+    break;
+  default:
+    posts = Object.values(import.meta.glob('../pages/cn/posts/*.md', { eager: true }));
+    break;
+}
 const allPosts = sortPosts(posts);
 const postIndex = getIndex(effectivePath);
 const toNavUrl = (post: any) => (post ? (post.frontmatter?.numericUrl ?? toNumericUrl(post.url)) : '');
@@ -72,10 +85,21 @@ const getGiscusTerm = () => {
 
 const giscusTerm = getGiscusTerm();
 
-const cleanPath = effectivePath.startsWith('/en/') ? effectivePath.slice(3) : effectivePath;
-const zhPath = `${BASE}${cleanPath}`;
-const enPath = `${BASE}/en${cleanPath.startsWith('/') ? cleanPath : '/' + cleanPath}`;
-const translationLabel = lang === 'en' ? '切换到中文' : 'Switch to English';
+// 各语言翻译情况：该期数在哪几种语言下存在，切换时深链到对应文章；缺失时跳该语言首页
+const everyPost = Object.values(import.meta.glob('../pages/*/posts/*.md', { eager: true })) as any[];
+const currentIssue = Number.parseInt(numberPart, 10);
+const availableLangs = new Set<string>();
+if (!Number.isNaN(currentIssue)) {
+  for (const post of everyPost) {
+    if (post.frontmatter?.issueNumber === currentIssue && post.frontmatter?.lang) {
+      availableLangs.add(post.frontmatter.lang as string);
+    }
+  }
+}
+const langUrls: Partial<Record<Lang, string>> = {};
+for (const code of Object.keys(languages) as Lang[]) {
+  langUrls[code] = availableLangs.has(code) ? `${BASE}/${code}/posts/${currentIssue}` : `${BASE}/${code}`;
+}
 
 const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
 ---
@@ -272,21 +296,6 @@ const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
       transform: translateY(-1px);
     }
 
-    .lang-switch-icon:hover {
-      background-color: var(--theme-bg-hover);
-    }
-
-    .lang-switch-mobile-btn {
-      text-decoration: none !important;
-    }
-
-    .lang-switch-mobile-btn:hover {
-      opacity: 1 !important;
-      border-block-end: none !important;
-      padding-block-end: 0 !important;
-      background-color: var(--theme-bg-hover) !important;
-    }
-
     :global(iframe.giscus-frame) {
       width: 100%;
     }
@@ -303,17 +312,13 @@ const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
             ><AstroLogo size={40} class='pswp-ignore' />
           </a>
           <span data-pagefind-meta='title' class='leading-tight flex-1 min-w-0 truncate'>
-            <span class='hidden md:inline'>{numberPrefix}{titleSeparator}</span>{displayTitle}
+            {title}
           </span>
           <ReaderModeToggle />
           <Search />
-          <a
-            href={lang === 'en' ? zhPath : enPath}
-            class='lang-switch-wrapper flex items-center justify-center h-9 w-9 rounded-full ml-2 !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200 lang-switch-mobile-btn'
-            aria-label={translationLabel}
-          >
-            {lang === 'en' ? '中' : 'En'}
-          </a>
+          <span class='ml-2 inline-flex'>
+            <LangSwitcher hrefs={langUrls} switchLabel={t('lang.switch')} />
+          </span>
         </h1>
         <slot />
         <div class='flex align-middle justify-center mt-4 pay-button-wrapper'>
@@ -327,7 +332,7 @@ const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
         <hr class='post-divider' />
         <div class='flex justify-between md:flex-row flex-col mt-2 post-footer'>
           <div class='text-gray-800 dark:text-gray-200 flex-1'>
-            {lang === 'en' ? 'Published at: ' : '发布日期：'}<a
+            {t('post.publishedAt')}<a
               href={`https://github.com/${SITE.repo}/tree/main/src/pages${url}.md`}
               target='_blank'
               data-pagefind-sort='date'
@@ -335,10 +340,10 @@ const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
             >
           </div>
           <div class='md:mt-0 mt-4 flex-1 text-right'>
-            {nextUrl ? <a href={translatePath(nextUrl)}>{lang === 'en' ? 'Next' : '下一篇'} |</a> : null}
-            {prevUrl ? <a href={translatePath(prevUrl)}>{lang === 'en' ? 'Prev' : '上一篇'} |</a> : null}
-            <a href={translatePath('/')}>{lang === 'en' ? 'Home' : '去首页'}</a>
-            <a href={`${BASE}/rss.xml`} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
+            {nextUrl ? <a href={translatePath(nextUrl)}>{t('post.next')} |</a> : null}
+            {prevUrl ? <a href={translatePath(prevUrl)}>{t('post.prev')} |</a> : null}
+            <a href={translatePath('/')}>{t('post.home')}</a>
+            <a href={`${BASE}/${lang}/rss.xml`} title='Subscribe' target='_blank' class='xl:inline-block hidden'> | RSS</a>
           </div>
         </div>
       </div>
@@ -358,7 +363,7 @@ const giscusTheme = `${Astro.url.origin}${BASE}/styles/giscus-light.css`;
             data-emit-metadata={GISCUS_CONFIG.emitMetadata}
             data-input-position={GISCUS_CONFIG.inputPosition}
             data-theme={giscusTheme}
-            data-lang={lang === 'en' ? 'en' : 'zh-CN'}
+            data-lang={giscusLang[lang]}
             data-loading='lazy'
             crossorigin='anonymous'
             async

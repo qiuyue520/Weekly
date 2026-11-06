@@ -1,27 +1,31 @@
 ---
 date: 2026/05/23
 ---
+
 <img src="" width="800" />
 
 <small>Week 2 Weekly Report</small>
 
 > **Recording the little things that happen each week**
 
-**Monday:** Same as usual, nothing really special happened. Just kinda drifted through the day.
+## Opening act: one meeting and a full-body soak
 
-**Tuesday:** Had a meeting in the afternoon, but the rain during that time was absolutely insane. The umbrella was basically useless, and by the time I got to the classroom, I was pretty much soaked.
-After the meeting, later in the afternoon, we got a notice saying the teacher wanted to hold a meeting in the studio at noon on Thursday to check our learning progress. Only five people from the studio were called.
+Monday was nothing special — the kind of day that just quietly evaporates. The real show started Tuesday afternoon: a meeting scheduled right as the rain went absolutely vertical. My umbrella was basically decorative out there, and I walked into the classroom dripping from head to toe, leaving little puddles under my chair. Right after the meeting, a notice dropped: Thursday noon, the teacher wants a progress check at the studio — five people invited. And that's where this week's plotline began.
 
-**Wednesday:** English class somehow got cancelled, but honestly that didn’t make the day any better. I had two classes at 8 in the morning and another two at 9 at night. Can’t wake up properly in the morning, can’t sleep properly at night — whoever made this schedule was actually insane...
-The teacher also reminded everyone again in the WeChat group today about the meeting tomorrow at noon.
+## The peak experience of my class schedule
 
+Wednesday, English class got cancelled — sounds nice until you see the fine print: two classes at 8 a.m. and two more at 9 p.m. Can't fall asleep early, can't drag myself up early, whoever built this timetable was playing a different game... Meanwhile the teacher re-reminded everyone in the WeChat group about tomorrow's meeting, in case we five forgot we're the ones being inspected.
 
-**Thursday:** Had no classes the whole day, so I went to do my usual duty shift in the morning. Around noon, the teacher suddenly had something come up and couldn’t make it, so the meeting got changed to online instead.
-The five of us who were supposed to present were all in the studio already, so we just joined the meeting together there.
-When it was my turn to talk, I suddenly noticed there was an extra person in the call. The weird part was, she had already left the studio a while ago, so honestly she probably shouldn’t still be getting access to this stuff.
-Turns out someone noticed she wasn’t there and sent her the meeting code himself. Then somebody asked him why he sent it, and he seriously went: “She was here last time, so when I noticed she wasn’t here this time, I just sent it to her.”
-Like... dude, the teacher didn’t even send her the code. Why are you worrying about it that much? If the teacher actually wanted her there, they would’ve sent it to her themselves. Why are you acting more concerned than the teacher?
+## Hall of fame: a meeting code that raised everyone's blood pressure
 
-**Friday:** During morning class, I suddenly remembered that I completely forgot to do last week’s Linux homework.
-Luckily the teacher didn’t give us shit for it. They reopened the assignment and said we could just hand it in before tonight.
-Then later that night I checked again and — oh shit, I forgot again. The assignment was already closed...
+Thursday, no classes, so I did my usual morning shift at the studio. The teacher had something come up at noon, so the meeting moved online. The five of us presenting were already at the studio anyway, so we joined together from there.
+
+When my turn came, I noticed an extra face in the call. Here's the thing: she quit the studio a while ago, so by any reasonable rule she has no business tapping its resources anymore. Turns out someone saw she wasn't in and "kindly" sent her the meeting code. When asked why, he said, dead serious: "She was here last time, and this time I saw she wasn't, so I sent it to her."
+
+Dude. The teacher didn't even send it to her. Whose agenda are you running? If the teacher actually wanted her in, she'd have gotten a private invite. Why are you more eager to hand out favors than to do any of your own work?
+
+## Friday disaster: one homework, two funerals
+
+Friday morning, mid-class, it hit me: I never did last week's Linux homework. Mercifully, the teacher didn't bite our heads off — reopened the assignment and said tonight is fine. I figured we were safe. Then at night I checked again and — oh come on — I'd forgotten AGAIN. Submission closed...
+
+The same homework, forgotten twice in one week. That's not a memory problem anymore, that's performance art.

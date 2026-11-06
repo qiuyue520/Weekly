@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const POSTS_DIR = path.join(process.cwd(), 'src', 'pages', 'posts');
+const POSTS_DIR = path.join(process.cwd(), 'src', 'pages', 'cn', 'posts');
 const POSTS_JSON = path.join(process.cwd(), 'posts.json');
 const BASE_URL = 'https://weekly.xiaonai.top';
 
@@ -79,7 +79,7 @@ function updatePostsJson(num, title) {
   const newPost = {
     num,
     title,
-    url: `${BASE_URL}/posts/${formatNumber(num)}-${title}`,
+    url: `${BASE_URL}/cn/posts/${formatNumber(num)}-${title}`,
     pic: ''
   };
 
@@ -101,9 +101,9 @@ function main() {
   updatePostsJson(num, title);
 
   console.log(`\u2705 文章创建成功！`);
-  console.log(`\u6587\u4EF6: src/pages/posts/${fileName}`);
+  console.log(`\u6587\u4EF6: src/pages/cn/posts/${fileName}`);
   console.log(`\u7F16\u53F7: ${formatNumber(num)}`);
-  console.log(`\u94FE\u63A5: ${BASE_URL}/posts/${formatNumber(num)}-${title}`);
+  console.log(`\u94FE\u63A5: ${BASE_URL}/cn/posts/${formatNumber(num)}-${title}`);
 }
 
 main();

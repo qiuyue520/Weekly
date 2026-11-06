@@ -1,40 +1,8 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HeadPreload from '../components/HeadPreload.astro';
-import Card from '../components/Card.astro';
-import Header from '../components/Header/Header.astro';
-import { SITE } from '@/config';
-import { sortPosts } from '@/util';
+// 根路径重定向到默认语言 /cn（默认中文）
+// Astro 要求根 index 页存在才能生成默认语言重定向；构建时由 i18n 中间件输出
+// meta refresh 跳转页（302），dev 下访问 ${BASE}/ 返回 302
+import { BASE } from '@/config';
 
-const posts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as any[];
-const allPosts = sortPosts(posts);
+return Astro.redirect(`${BASE}/cn`, 301);
 ---
-
-<BaseLayout title={SITE.title} description={SITE.description} pageURL={SITE.homePage}>
-  <style slot='head'>
-    /* Enhanced card hover effects */
-    .card-content:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 8px 16px -2px rgb(0 0 0 / 0.12),
-        0 4px 8px -2px rgb(0 0 0 / 0.08);
-    }
-
-    .card-content:hover img {
-      transform: scale(1.02);
-    }
-
-    .card-content:active {
-      transform: translateY(-2px);
-    }
-  </style>
-
-  <HeadPreload slot='head' allPosts={allPosts} />
-
-  <Header />
-  <div class='mx-auto -mt-5 mb-12 xl:max-w-7xl w-full lg:max-w-5xl md:max-w-2xl max-w-xl box-border md:px-0 sm:px-3 px-4'>
-    <div class='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 mx-0 md:-mr-5 mr-0'>
-      {allPosts.map((post, index) => <Card post={post} priority={index <= 2} isLCP={index <= 2} />)}
-    </div>
-  </div>
-</BaseLayout>

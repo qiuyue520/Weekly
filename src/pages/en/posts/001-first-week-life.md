@@ -1,36 +1,36 @@
 ---
 date: 2026/05/15
 ---
+
 <img src="" width="800" />
 
 <small>First Weekly Report</small>
 
 > **Recording some small things that happen each week**
 
-## How This Week Started
+## Why this weekly exists
 
-While searching for blog projects online, I stumbled upon **Huizhi**'s blog and learned that he had also set up the *weekly* project. The original creator of the project is **tw93**, and I found it quite interesting, so I decided to build one myself.
+While digging around for blog projects online, I stumbled onto **Huizhi**'s blog, and from there found out he also runs something called a weekly. Tracing it back, the original project is by **tw93**. I read a few issues and kept thinking: packing up the small, unremarkable stuff in your life and shipping it every week somehow makes a great read. So I stopped thinking and built my own — the site you're looking at right now.
 
-I strongly agree with Huizhi's view: **weekly** and **blog** are indeed two fundamentally different formats
+I totally agree with Huizhi on this: a **weekly** and a **blog** look like the same activity, but they're two completely different species.
 
 | Type | Characteristics |
 |:---|:---|
-| **Weekly** | More fragmented, focusing on periodic life records and summaries |
-| **Blog** | More systematic, focusing on accumulated knowledge sharing and reflections |
+| **Weekly** | More fragmented — periodic life logs and summaries. Written light, shipped often |
+| **Blog** | More systematic — accumulated knowledge and deeper thinking. Written slow, built to last |
 
----
+A blog is building a house; a weekly is a ledger. A house needs blueprints, a ledger just needs a pen. This weekly is my ledger.
 
-## A Week in Notes
+## Week one: a withdrawal, volleyball, and one exam
 
- - **Monday** The innovation competition results are still up in the air. Originally scheduled for release on the 8th–10th, the date was pushed to the 9th–15th, so I can only keep waiting. Additionally, I was pulled into a new competition, but I was already overwhelmed. I spoke with my professor in the evening to explain the situation and withdrew. When you know you can't finish something, it's better to be upfront early—that's being responsible to both the team and yourself.
+The main storyline this week was learning to **cut my losses**. The innovation competition results are still up in the air — first they said results would drop on the 8th–10th, then it became the 9th–15th. And before that even settled, someone pulled me into yet another competition. I took one honest look at my plate and knew I couldn't handle it — saying yes anyway would've been the real disservice to the team. So that evening I went to my professor, explained the situation, and bowed out. If you know you can't finish something, say so early. Better for the team, better for you. The sooner that lesson sinks in, the cheaper it is.
 
- - **Tuesday** A day packed with classes. Morning PE class at ten, and I keep hitting the volleyball off-course—any quick tips? 🏐
+The rest was daily-life filler: a day packed with classes, morning PE at ten, and my volleyball that refuses to fly straight — any speedrun tips? 🏐 Thursday had no morning classes, so I planned to sleep in — nope, the studio had me on shift. Up early, at my desk, computer on. Then a Linux exam in the evening, cramming at the last minute, as one does.
 
- - **Wednesday** A girl reached out to me asking for help setting up the environment for a big‑data competition. She asked, “So you’re still gonna handle the environment setup for me, yeah?” I didn’t reply. After all, she put in no real effort and just planned to leech off my work to win an award. I’d end up doing all the heavy lifting for the competition while she just played the pretty face. I’ll detail this whole story on my blog later, so I won’t elaborate here.
+## A sneak preview of "that person"
 
-> 📎 Feel free to follow my blog: [blog.xiaonai.top](https://blog.xiaonai.top). If access is slow, you can visit the domestic mirror at [www.xiaonai.top](https://www.xiaonai.top)
+I also ran into a piece of work this week. Someone came asking me to help set up the environment for a big-data competition, opening with: "So the environment setup — you're still gonna do it for me, right?" I didn't reply. She does none of the work and just waits to harvest an award; I'd carry the entire competition while she plays the trophy on the sidelines. Why should that deal ever land on my desk? I'll save the full story for a proper blog post later — it deserves one.
 
- - **Thursday** No morning classes, but the studio scheduled a shift, so sleeping in was out of the question. Woke up early, got to my post, turned on the computer, and started a new day. Also had a Linux exam in the evening, cramming at the last minute.
+## Wrapping up
 
- - **Friday** A day with no classes, and many people chose to go home. I spent the day successfully setting up the weekly project. Another ordinary week has passed.
-
+Friday was class-free, and plenty of people headed home. I stayed and got this weekly project up and running. An ordinary week, closed out with issue number one. See you next week.

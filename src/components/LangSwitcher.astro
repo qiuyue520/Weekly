@@ -1,0 +1,120 @@
+---
+import { languages, langShort, type Lang } from '../i18n/ui';
+import { getLangFromUrl } from '../i18n/utils';
+import { BASE } from '@/config';
+
+export interface Props {
+  /** 各语言对应的链接；缺省时跳转到该语言首页 */
+  hrefs?: Partial<Record<Lang, string>>;
+  /** 按钮的 aria-label / title */
+  switchLabel?: string;
+}
+
+const { hrefs = {}, switchLabel } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const entries = Object.entries(languages) as [Lang, string][];
+const label = switchLabel ?? 'Switch language';
+
+const hrefFor = (code: Lang) => hrefs[code] ?? `${BASE}/${code}`;
+---
+
+<details class='lang-switcher relative'>
+  <summary
+    class='lang-switch-btn flex items-center justify-center h-9 w-9 rounded-full !bg-gray-100 dark:!bg-gray-800 text-sm font-medium transition-colors !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200 cursor-pointer select-none'
+    aria-label={label}
+    title={label}
+  >
+    {langShort[lang]}
+  </summary>
+  <ul
+    class='lang-switch-menu absolute right-0 top-full mt-2 w-36 rounded-lg py-1 shadow-lg !bg-white dark:!bg-gray-800 border border-gray-100 dark:border-gray-700 z-50'
+  >
+    {
+      entries.map(([code, name]) => (
+        <li>
+          {code === lang ? (
+            <span
+              class='block px-3 py-2 text-sm font-bold !text-gray-900 dark:!text-gray-100'
+              aria-current='true'
+            >
+              {name}
+            </span>
+          ) : (
+            <a
+              href={hrefFor(code)}
+              hreflang={code}
+              class='block px-3 py-2 text-sm !text-gray-600 dark:!text-gray-400 hover:!text-gray-900 dark:hover:!text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors'
+              style='text-decoration: none;'
+            >
+              {name}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</details>
+
+<script>
+  // 点击组件外部时收起下拉
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('details.lang-switcher[open]').forEach((el) => {
+      if (event.target instanceof Node && !el.contains(event.target)) {
+        el.removeAttribute('open');
+      }
+    });
+  });
+</script>
+
+<style>
+  .lang-switcher summary {
+    list-style: none;
+    /* .heti 给 summary 加了 padding-inline-start: 16px（给正文 details 折叠块用的），
+       会把 36px 圆钮里的文字挤出圆圈，这里重置 */
+    padding: 0;
+  }
+
+  .lang-switcher summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* 文章页内 .heti / .markdown-body 会给 ul 重新加上列表圆点和缩进，这里重置 */
+  .lang-switcher .lang-switch-menu {
+    list-style: none;
+    padding-inline-start: 0;
+  }
+
+  .lang-switcher .lang-switch-menu li {
+    list-style: none;
+    margin: 0;
+  }
+
+  .lang-switcher .lang-switch-menu li::before {
+    content: none;
+  }
+
+  .lang-switcher .lang-switch-menu li::marker {
+    content: none;
+  }
+
+  /* .heti 的 a:hover 会加 padding-block-end: 1px 和 1px 底边框，把原有的 py-2 底 padding
+     顶掉，菜单项 hover 时会整体跳动；这里按 py-2 的值把 padding 钉死并禁用边框/下划线，
+     保证文章页和首页的菜单表现一致 */
+  .lang-switcher .lang-switch-menu a,
+  .lang-switcher .lang-switch-menu a:hover,
+  .lang-switcher .lang-switch-menu a:focus {
+    border: none;
+    text-decoration: none;
+    padding-block: 0.5rem;
+  }
+
+  .lang-switcher .lang-switch-menu span,
+  .lang-switcher .lang-switch-menu a {
+    font-weight: 400;
+  }
+
+  /* 当前语言加粗标识（scoped 提权，防止被排版样式覆盖） */
+  .lang-switcher .lang-switch-menu span[aria-current='true'] {
+    font-weight: 700;
+  }
+</style>

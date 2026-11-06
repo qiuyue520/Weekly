@@ -1,11 +1,13 @@
 export const SUPPORT_CALLOUT = {
-  zh: "欢迎通过邮箱联系我",
+  cn: "欢迎通过邮箱联系我",
   en: "Welcome to contact me via email",
+  ja: "メールでお気軽にご連絡ください",
+  tw: "歡迎透過信箱聯繫我",
   link: "mailto:xiaonaihenlihai@outlook.com",
 };
 
-export const renderSupportCalloutForRSS = (lang: "zh" | "en" = "zh") => {
-  const cta = SUPPORT_CALLOUT[lang] ?? SUPPORT_CALLOUT.zh;
+export const renderSupportCalloutForRSS = (lang: "cn" | "en" | "ja" | "tw" = "cn") => {
+  const cta = SUPPORT_CALLOUT[lang] ?? SUPPORT_CALLOUT.cn;
   const { link } = SUPPORT_CALLOUT;
   return `
     <hr style="border:none;border-top:0.5px solid rgba(0,0,0,0.08);margin:26px 0 14px;" />

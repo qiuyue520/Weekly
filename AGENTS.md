@@ -14,6 +14,13 @@ Weekly is an Astro and Markdown static site for weekly posts.
 - `.github/workflows/build.yml` - site build and deployment workflow.
 - `.github/workflows/translate-posts.yml` - scheduled or manual translation workflow.
 
+## Language Routing
+
+- Four language routes under `src/pages/`: `cn/`, `en/`, `ja/`, `tw/`, each with `index.astro`, `posts/` Markdown, and `rss.xml.js`.
+- Chinese posts live in `src/pages/cn/posts/`; legacy `/posts/N` URLs redirect to `/cn/posts/N` via the `redirects` config plus the `fixRedirectBase` integration.
+- The language switcher (`src/components/LangSwitcher.astro`) lists all four languages; on post pages it deep-links to an issue only when that language's translation exists, otherwise it links to the language home.
+- `ja/` and `tw/` are scaffolding with no posts yet; dropping translated Markdown into their `posts/` directories is enough to publish.
+
 ## Commands
 
 ```bash

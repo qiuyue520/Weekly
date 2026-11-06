@@ -1,4 +1,4 @@
-@import url("/fonts/jinkai.css");
+@import url("../fonts/jinkai.css"); /* 相对路径，随 BASE 部署子路径自适应 */
 
 main {
   --color-btn-text: #24292f;

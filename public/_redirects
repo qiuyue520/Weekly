@@ -1,0 +1,3 @@
+# Cloudflare Pages 重定向：旧版无语言前缀 URL → /cn
+# GitHub Pages 不解析此文件（多余静态文件，无害）
+/posts/* /cn/posts/:splat 301

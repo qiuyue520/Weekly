@@ -3,7 +3,13 @@ import path from "path";
 import probe from "probe-image-size";
 import throat from "throat";
 
-const POSTS_DIR = "./src/pages/posts";
+// 扫描全部语言的 posts 目录（缺失的目录自动跳过）
+const POSTS_DIRS = [
+  "./src/pages/cn/posts",
+  "./src/pages/en/posts",
+  "./src/pages/ja/posts",
+  "./src/pages/tw/posts",
+];
 const OUTPUT_FILE = "./src/data/image-metadata.json";
 const CONCURRENCY = 10;
 
@@ -12,14 +18,24 @@ const CONCURRENCY = 10;
 const IMG_REGEX = /<img\s+[^>]*src="([^"]+)"/g;
 const FRONTMATTER_IMG_REGEX = /^image:\s*(https?:\/\/\S+)/m;
 
+function listPostFiles() {
+  return POSTS_DIRS.flatMap((dir) => {
+    if (!fs.existsSync(dir)) return [];
+    return fs
+      .readdirSync(dir)
+      .filter((f) => f.endsWith(".md"))
+      .map((f) => path.join(dir, f));
+  });
+}
+
 async function probeImages() {
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".md"));
+  const files = listPostFiles();
   const imageUrls = new Set();
 
   console.log(`Scanning ${files.length} files...`);
 
   for (const file of files) {
-    const content = fs.readFileSync(path.join(POSTS_DIR, file), "utf-8");
+    const content = fs.readFileSync(file, "utf-8");
 
     // 1. Match <img> tags
     let match;

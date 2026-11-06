@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
 import { getIndex, parseTitle, toNumericUrl } from "@/util";
 import { renderSupportCalloutForRSS } from "@/supportCallout";
-import { SITE } from "@/config";
+import { SITE, BASE } from "@/config";
 
 export async function GET() {
   let allPosts = import.meta.glob("./posts/*.md", { eager: true });
@@ -69,18 +69,22 @@ export async function GET() {
         const enLink = numericLink.startsWith("/en")
           ? numericLink
           : `/en${numericLink}`;
+        // 带 BASE 前缀，保证 GitHub Pages 子路径部署下链接正确
+        const postLink = `${BASE}${enLink}`;
         const title = parseTitle(
           numericLink,
           item.frontmatter.legacySlug,
           item.frontmatter.issueTitle,
           "en",
+          false,
+          item.frontmatter.date,
         );
         const html = await processContent(item);
         const coverImage = extractFirstImage(html);
         const coverImageUrl = coverImage ? escapeXmlAttr(coverImage) : null;
         const coverImageMime = coverImage ? getImageMimeType(coverImage) : null;
         return {
-          link: enLink,
+          link: postLink,
           title,
           description: `${html}${renderSupportCalloutForRSS("en")}`,
           pubDate: item.frontmatter.date,

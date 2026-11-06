@@ -41,7 +41,21 @@ import { BASE } from '@/config';
 <script define:vars={{ BASE }}>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register(BASE + '/sw.js').then(
+      const expectedScope = (BASE || '') + '/';
+
+      // 清理残留注册：scope 不在当前 BASE 下的旧 SW（老版本构建或同端口其他项目注册的）
+      // 残留 SW 会持续轮询错误路径（如 /sw.js），并在 dev 下触发 base 校验报错
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          const scopePath = new URL(registration.scope).pathname.replace(/\/$/, '');
+          const expectedPath = expectedScope.replace(/\/$/, '');
+          if (scopePath !== expectedPath) {
+            registration.unregister();
+          }
+        }
+      });
+
+      navigator.serviceWorker.register(BASE + '/sw.js', { scope: expectedScope }).then(
         (registration) => {
           console.log('SW registered: ', registration);
         },

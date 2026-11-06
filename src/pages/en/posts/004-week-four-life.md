@@ -1,18 +1,27 @@
 ---
 date: 2026/06/01
 ---
+
 <img src="" width="800" />
 
 <small>Week 4 Report</small>
 
 > **Recording the small things that happen each week**
 
-**Monday**: I genuinely don't fucking get it. Three bullshit courses, and all three require PowerPoint presentations. Today's bullshit course, the first group went up, and the professor was nitpicking like a goddamn hawk, hell-bent on finding flaws in the PPTs. Even said the remaining groups would lose points if they were the same. It's a fucking bullshit course, why the hell does the PPT need to be such high quality? Ugh, gotta pull myself together for tomorrow's PE makeup exam.
+## Three filler courses, three slide decks — make it make sense
 
-**Tuesday**: Practiced volleyball all morning. Exam. Failed again. Can only wait for Thursday's final makeup chance. Volleyball doesn't seem like it's meant for humans to learn. Mastering volleyball in a short time? Absolutely impossible. There are way too many unpredictable factors—people, weather, location. Can you even guarantee your teammates have your skill level?
+Monday. I genuinely don't understand. Three filler courses, and all three demand PowerPoint presentations. In today's session the first group went up, and the teacher nitpicked their slides like a hawk picking at an egg, then announced the later batches lose points if theirs look the same. Hello? It's a filler course — since when does it need launch-presentation-grade slides? The whole point of a filler course is to coast through it. The requirements are more ridiculous than the course itself. Sigh. Fine. Regroup, and get ready for tomorrow's PE retake.
 
-**Wednesday**: Another day from 8 AM to 9 PM.
+## Volleyball week: the war report
 
-**Thursday**: No classes all day, so went to practice volleyball again in the morning. Succeeded once, but that was an extremely tiny probability, and couldn't replicate it after that. The professor doesn't count lucky shots—you have to tell him you're testing, and it only counts if he's watching. Obviously, still failed in the end. Grades get posted next Tuesday. Practiced all afternoon too. Exhausted and absolutely nothing to show for it.
+This week's theme was volleyball. The tone was defeat.
 
-**Friday**: I fucking hate volleyball......
+Tuesday: practiced all morning, took the exam, and — failed again. So now everything rides on Thursday's last chance. I'm starting to seriously suspect volleyball was never meant to be learned by humans. Mastering it in a short time? Impossible. Too many variables — people, weather, the court, all of it. It's a two-person event and you can't even guarantee your teammate is functioning at a normal level. Who do I even complain to about that?
+
+Wednesday: nothing to report. 8 a.m. to 9 p.m., life compressed into two points and the line between them.
+
+Thursday: class-free day, so back to the court in the morning. I actually pulled it off once — a pure statistical anomaly, never happened again after that. And the teacher doesn't count lucky shots: you have to call "I'm going for it" on the spot, with him watching, or it doesn't count. Naturally, luck didn't dare show up during the actual exam. Failed in the end. Grades post next Tuesday. Practiced the whole afternoon too — dead tired, results at absolute zero.
+
+## Closing note
+
+Friday, all I've got is this: I hate volleyball......

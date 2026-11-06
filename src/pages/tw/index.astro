@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import Header from '../../components/Header/Header.astro';
+import { SITE } from '@/config';
+import { sortPosts } from '@/util';
+import { useTranslations } from '../../i18n/utils';
+import HeadPreload from '../../components/HeadPreload.astro';
+
+const posts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as any[];
+const allPosts = sortPosts(posts);
+const t = useTranslations('tw');
+---
+
+<BaseLayout title={t('site.title')} description={t('site.description')} pageURL={`${SITE.homePage}/tw`}>
+  <style slot='head'>
+    .card-content:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 8px 16px -2px rgb(0 0 0 / 0.12),
+        0 4px 8px -2px rgb(0 0 0 / 0.08);
+    }
+
+    .card-content:hover img {
+      transform: scale(1.02);
+    }
+
+    .card-content:active {
+      transform: translateY(-2px);
+    }
+  </style>
+
+  <HeadPreload slot='head' allPosts={allPosts} />
+
+  <Header />
+  <div class='mx-auto -mt-5 mb-12 xl:max-w-7xl w-full lg:max-w-5xl md:max-w-2xl max-w-xl box-border md:px-0 sm:px-3 px-4'>
+    <div class='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 mx-0 md:-mr-5 mr-0'>
+      {allPosts.map((post, index) => <Card post={post} priority={index <= 2} isLCP={index <= 2} />)}
+    </div>
+  </div>
+</BaseLayout>

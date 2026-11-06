@@ -9,10 +9,21 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const translatePath = useLocalizedPath(lang);
 
-const posts =
-  lang === 'en'
-    ? Object.values(import.meta.glob('../pages/en/posts/*.md', { eager: true }))
-    : Object.values(import.meta.glob('../pages/posts/*.md', { eager: true }));
+let posts: any[] = [];
+switch (lang) {
+  case 'en':
+    posts = Object.values(import.meta.glob('../pages/en/posts/*.md', { eager: true }));
+    break;
+  case 'ja':
+    posts = Object.values(import.meta.glob('../pages/ja/posts/*.md', { eager: true }));
+    break;
+  case 'tw':
+    posts = Object.values(import.meta.glob('../pages/tw/posts/*.md', { eager: true }));
+    break;
+  default:
+    posts = Object.values(import.meta.glob('../pages/cn/posts/*.md', { eager: true }));
+    break;
+}
 
 const allPosts = sortPosts(posts);
 
@@ -23,7 +34,7 @@ const sidebarSections = allPosts.reduce((sections, post, index) => {
   const issueTitle = post.frontmatter?.issueTitle;
   const numericUrl = post.frontmatter?.numericUrl ?? toNumericUrl(post.url);
   const route = {
-    title: parseTitle(numericUrl, legacySlug, issueTitle, lang),
+    title: parseTitle(numericUrl, legacySlug, issueTitle, lang, false, post.frontmatter?.date),
     link: numericUrl.startsWith('/') ? numericUrl.slice(1) : numericUrl,
   };
   if (index === 0) {

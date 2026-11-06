@@ -1,4 +1,6 @@
 import fs from "fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import dayjs from "dayjs";
 import tailwind from "@astrojs/tailwind";
 import remarkBreaks from "remark-breaks";
@@ -38,14 +40,65 @@ function getTwitterImage(num) {
   return num >= 110 ? `https://weekly.tw93.fun/assets/${num}.jpg` : undefined;
 }
 
+// 语言路由与 src/pages/{lang}/posts 目录一一对应
+const LANG_ROUTES = ["cn", "en", "ja", "tw"];
+
+// 各语言的默认描述（正文首段缺失时的兜底）
+const DEFAULT_DESCRIPTIONS = {
+  cn: "记录工程师 xiaonai 的不枯燥生活，每周一发布，欢迎关注",
+  tw: "記錄工程師 xiaonai 的不枯燥生活，每週一發布，歡迎關注",
+  en: "Recording engineer xiaonai's interesting life, published every Monday. Welcome to follow.",
+  ja: "エンジニア xiaonai のおもしろい日常を記録。毎週月曜日更新、フォロー歓迎。",
+};
+
+// 从文件路径推断语言（兼容 / 与 \ 分隔符）
+function getLangFromFilePath(filePath) {
+  const match = filePath.match(/[\/\\](cn|en|ja|tw)[\/\\]posts[\/\\]/);
+  return match ? match[1] : "cn";
+}
+
+// Astro 为 redirects 生成的静态跳转页不会自动拼 BASE 前缀，
+// GitHub Pages 子路径部署（BASE=/Weekly）时会 404，这里在构建完成后补写
+function fixRedirectBase() {
+  return {
+    name: "fix-redirect-base",
+    hooks: {
+      "astro:build:done": ({ dir, logger }) => {
+        if (!BASE) return;
+        const postsDir = path.join(fileURLToPath(dir), "posts");
+        if (!fs.existsSync(postsDir)) return;
+        const siteOrigin = new URL(SITE_URL).origin;
+        let fixed = 0;
+        for (const entry of fs.readdirSync(postsDir, { withFileTypes: true })) {
+          const redirectPage = path.join(postsDir, entry.name, "index.html");
+          if (!entry.isDirectory() || !fs.existsSync(redirectPage)) continue;
+          const html = fs.readFileSync(redirectPage, "utf-8");
+          const rewritten = html
+            .replaceAll(`href="${siteOrigin}/cn/posts/`, `href="${SITE_URL}/cn/posts/`)
+            .replaceAll(`url=/cn/posts/`, `url=${BASE}/cn/posts/`)
+            .replaceAll(`href="/cn/posts/`, `href="${BASE}/cn/posts/`);
+          if (rewritten !== html) {
+            fs.writeFileSync(redirectPage, rewritten);
+            fixed++;
+          }
+        }
+        if (fixed > 0) {
+          logger.info(`fix-redirect-base: rewrote ${fixed} redirect pages with BASE prefix`);
+        }
+      },
+    },
+  };
+}
+
 function defaultLayoutPlugin() {
   return function (tree, file) {
     const filePath = file.history[0];
     const { frontmatter } = file.data.astro;
     frontmatter.layout = "@layouts/post.astro";
 
-    const isEn = filePath.includes("/en/posts/") || filePath.includes("\\en\\posts\\");
-    const postsDir = isEn ? "/en/posts/" : "/posts/";
+    const lang = getLangFromFilePath(filePath);
+    const postsDir = `/${lang}/posts/`;
+    frontmatter.lang = lang;
 
     const relativePath = filePath
       .split(/[\/\\]posts[\/\\]/)[1]
@@ -77,7 +130,7 @@ function defaultLayoutPlugin() {
       frontmatter.description = tree.children[1].children[1].value;
     }
 
-    frontmatter.description = frontmatter.description || "记录工程师 xiaonai 的不枯燥生活，每周一发布，欢迎关注";
+    frontmatter.description = frontmatter.description || DEFAULT_DESCRIPTIONS[lang];
     frontmatter.image = frontmatter.image || `${BASE}/xnwky.png`;
 
     // Fallback to file creation time if no date is specified
@@ -104,23 +157,41 @@ export default defineConfig({
   },
   integrations: [
     tailwind(),
+    fixRedirectBase(),
     sitemap({
       changefreq: "weekly",
       priority: 0.7,
       lastmod: new Date(),
       filter: (page) => {
         const url = new URL(page);
-        const postPathMatch = url.pathname.match(/\/posts\/(\d+)-/);
+        // 根路径现在是默认语言重定向页，不进 sitemap
+        if (url.pathname === `${BASE}/` || url.pathname === BASE) {
+          return false;
+        }
+        // 各语言的数字文章页正常收录
+        if (new RegExp(`\\/(${LANG_ROUTES.join("|")})\\/posts\\/\\d+$`).test(url.pathname)) {
+          return true;
+        }
+        // 旧版数字 URL（现在是重定向页）与 legacy slug 不进 sitemap
+        const postPathMatch = url.pathname.match(/\/posts\/(\d+)(-|$)/);
         return !postPathMatch;
       },
     }),
   ],
   i18n: {
-    defaultLocale: "zh",
-    locales: ["zh", "en"],
+    defaultLocale: "cn",
+    locales: LANG_ROUTES,
     routing: {
-      prefixDefaultLocale: false,
+      // 全部语言带前缀：/cn /en /ja /tw，根路径由中间件重定向到 /cn
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
     },
+  },
+  // 旧版无前缀 URL 兼容：/posts/5 → /cn/posts/5
+  // 静态构建时会基于目标路由的 getStaticPaths 枚举参数，生成 meta refresh 跳转页
+  // （跳转目标缺 BASE 前缀的问题由 fixRedirectBase 集成在构建完成后修复）
+  redirects: {
+    "/posts/[id]": "/cn/posts/[id]",
   },
   markdown: {
     remarkPlugins: [

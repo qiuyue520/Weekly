@@ -25,10 +25,10 @@ const {
   includeScripts = true,
 } = Astro.props;
 
-import { getLangFromUrl, useTranslations, useLocalizedPath } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { htmlLang } from '../i18n/ui';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useLocalizedPath(lang);
 // Merge provided SEO data with content object
 const seoContent = {
   title: content.title || (title !== SITE.title ? title.replace(SITE.title, '') : ''),
@@ -39,7 +39,7 @@ const seoContent = {
 };
 ---
 
-<html lang={lang === 'en' ? 'en' : 'zh-CN'}>
+<html lang={htmlLang[lang]}>
   <head>
     <HeadCommon />
     <HeadSEO content={seoContent} pageURL={pageURL} />

@@ -3,7 +3,7 @@ name: Auto Translate Posts
 on:
   push:
     paths:
-      - "src/pages/posts/**.md"
+      - "src/pages/cn/posts/**.md"
     branches:
       - main
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/pages/en/posts/
+          git add src/pages/en/posts/ src/pages/ja/posts/ src/pages/tw/posts/
           # Only commit if there are changes
           if ! git diff --staged --quiet; then
             git commit -m "feat: auto translate new posts [skip ci]"

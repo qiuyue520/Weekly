@@ -1,5 +1,5 @@
 ---
-import PostLayout from "../../layouts/post.astro";
+import PostLayout from "../../../layouts/post.astro";
 
 interface PathProps {
   filePath?: string;
@@ -36,7 +36,7 @@ if (hyphenIndex > -1) {
   const maybeNumeric = decodedRouteId.slice(0, hyphenIndex);
   const numericId = Number.parseInt(maybeNumeric, 10);
   if (!Number.isNaN(numericId)) {
-    return Astro.redirect(`/posts/${numericId}`, 301);
+    return Astro.redirect(`/cn/posts/${numericId}`, 301);
   }
 }
 
@@ -46,7 +46,7 @@ const contentModules = import.meta.glob("./*.md");
 if (!filePath) {
   const numericId = Number.parseInt(decodedRouteId ?? "", 10);
   if (!Number.isNaN(numericId)) {
-    return Astro.redirect(`/posts/${numericId}`, 301);
+    return Astro.redirect(`/cn/posts/${numericId}`, 301);
   }
 
   throw new Response(null, { status: 404 });
@@ -74,8 +74,8 @@ const legacySlug = fileName.replace(/\.md$/, "");
 const [index] = legacySlug.split("-");
 const parsedIndex = Number.parseInt(index, 10);
 const sanitizedIndex = Number.isNaN(parsedIndex) ? index : String(parsedIndex);
-const legacyUrl = `/posts/${legacySlug}`;
-const numericUrl = `/posts/${sanitizedIndex}`;
+const legacyUrl = `/cn/posts/${legacySlug}`;
+const numericUrl = `/cn/posts/${sanitizedIndex}`;
 
 const enhancedFrontmatter = {
   ...frontmatter,
