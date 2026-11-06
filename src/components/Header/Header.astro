@@ -118,17 +118,14 @@ const translatePath = useLocalizedPath(lang);
 </style>
 
 <style is:global>
+  /* 大屏容器加宽：覆盖 Tailwind 的 xl:max-w-7xl（80rem = 1280px）。
+     该规则与 Tailwind 工具类同特异性，生效与否原本取决于各页面 CSS chunk
+     的拼接顺序——顺序一翻，部分语言页面（如 /en）容器就窄 58px，
+     卡片间距从 ~20px 缩到 ~5px，看起来「变紧凑」。
+     双倍 class 提权后不再受拼接顺序影响，所有页面稳定生效。 */
   @media (min-width: 1412px) {
-    .xl\:max-w-7xl {
+    .xl\:max-w-7xl.xl\:max-w-7xl {
       max-width: 1338px;
     }
-  }
-
-  @media (min-width: 1080px) .lg\:max-w-5xl {
-    max-width: 998px;
-  }
-
-  @media (min-width: 768px) .md\:max-w-2xl {
-    max-width: 659px;
   }
 </style>
