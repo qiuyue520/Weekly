@@ -16,9 +16,9 @@ The progress bar starts back in the summer.
 
 ## Victoria Harbour, a system-crash scene
 
-Over summer break my younger brother and I went to Hong Kong, and our cousin showed us around. One day at the harbour, two foreigners came up and asked `can you speak english?` I fired back `yes i can` — **fast and rock-steady**, because I understood that sentence one hundred percent.
+Over summer break my younger brother and I went to Hong Kong, and our cousin showed us around. One day at the harbour, two foreigners came up and opened with "Can you speak English?" I fired back "Yes, I can." — **fast and rock-steady**, because I understood that sentence one hundred percent.
 
-Then my brain crashed. Of everything she said after that, I only caught a vague outline (something about 20 Hong Kong dollars?), and past that my head just **failed to load**. The rest of the sentence was missing, no reply could be assembled — I stood there frozen, fans still spinning. My cousin saved the scene with a `sorry we don't have cash`, and damn — that was the moment I remembered **the English word for cash is cash**.
+Then my brain crashed. Of everything she said after that, I only caught a vague outline (something about 20 Hong Kong dollars?), and past that my head just **failed to load**. The rest of the sentence was missing, no reply could be assembled — I stood there frozen, fans still spinning. My cousin saved the scene with a "Sorry, we don't have cash." — and damn, that was the moment I remembered **the English word for cash is cash**.
 
 He's not much of a studier, but English just rolls off his tongue. I was so jealous — jealous with no excuse whatsoever.
 

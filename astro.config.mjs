@@ -8,25 +8,7 @@ import sitemap from "@astrojs/sitemap";
 
 import { defineConfig } from "astro/config";
 import { parse } from "node-html-parser";
-import { visit } from "unist-util-visit";
 import rehypeImage from "./rehype-image.js";
-
-// 给行内代码与代码块加 translate="no" + notranslate class：
-// 浏览器翻译（谷歌翻译 / 沉浸式翻译 / Edge 自带微软翻译等）默认不翻 code，
-// 但可能把 code 元素从原位抽走堆到段尾，导致句子顺序错乱。
-// translate="no" 是 HTML 标准标记，notranslate 是微软系翻译尊重的老标记，双保险。
-function rehypeNoTranslateCode() {
-  return (tree) => {
-    visit(tree, (node) => {
-      if (node.tagName === "code" || node.tagName === "pre") {
-        node.properties ??= {};
-        node.properties.translate = "no";
-        const cls = node.properties.className ??= [];
-        if (!cls.includes("notranslate")) cls.push("notranslate");
-      }
-    });
-  };
-}
 
 // 部署配置：通过环境变量控制
 // GitHub Pages: BASE=/Weekly SITE_URL=https://qiuyue520.github.io/Weekly
@@ -218,7 +200,7 @@ export default defineConfig({
       // Enable hard breaks based on configuration
       ...(markdownConfig.hardBreaks ? [remarkBreaks] : []),
     ],
-    rehypePlugins: [rehypeImage, rehypeNoTranslateCode],
+    rehypePlugins: [rehypeImage],
     remarkRehype: {
       handlers: {},
       allowDangerousHtml: markdownConfig.allowDangerousHtml,
